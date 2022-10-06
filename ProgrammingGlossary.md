@@ -4,7 +4,7 @@
 ---
 ## C
 - **CLI** (Command Line Interface): every input in the terminal to give any order (petition).
-- **Container**: standardized unit of software. The container is totally isolated: that's the power of this system, you don't have to install anything to use it
+- *Container*: standardized unit of software. The container is totally isolated: that's the power of this system, you don't have to install anything to use it
 ---
 ## S
 - **Soft link**:
