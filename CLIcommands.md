@@ -1,4 +1,5 @@
 ### CLI Commands:
+# Docker
 - `build`: creation of image from a Dockerfile.
 - `push`: push a local image to a registry.
 - `pull`: pull an image from the registry into the local.
