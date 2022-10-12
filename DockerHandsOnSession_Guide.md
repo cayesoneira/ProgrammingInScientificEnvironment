@@ -1,12 +1,14 @@
+### Still working in the fact that binding volumes gives priority to the files in the host folder and erases those in the directory linked in the container.
+### Also missing is the CLI command used to install python packages from the terminal of the container.
+
 # A guide to the Hands-on session of Docker.
-This session is done in Windows. Soon I will move to Ubuntu. In *italics* are written the questions, afterwards there is my answer.
+This session is done in Windows. Soon I will move to Ubuntu. In *italics* are written the questions, afterwards it is my answer.
 
 ## 1. Share data between the host and containers
-
 *Use image: duartej/m1992-pyroot. Create some files inside the container and illustrate the different data sharing: in a running container, using docker cp and when starting the container, binding a volume to the host.*
 
 ### Binding volumes:
-- Before anything, I create two directories in `\C:`, one is called **VolumenDeCaye** and the other **CopiasDeCaye**. We will use them to not mix the different parts of the exercise.
+- Before anything else, I create two directories in `\C:`, one is called **VolumenDeCaye** and the other **CopiasDeCaye**. We will use them to not mix the different parts of the exercise.
 - First of all, we open the Powershell as admin using right click.
 - We open Docker Desktop to turn on the Docker Engine.
 - We download the latest version of the image:
@@ -60,7 +62,6 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - We use the terminal inside the container to install those packages:
 
         FALTA EL COMANDO QUE HAY QUE METER EN LA TERMINAL DEL CONTAINER PARA QUE INSTALE ESO. YA INTENTÉ CASI TODAS LAS OPCIONES COMUNES DE PYTHON3 Y DE LINUX, ETC.
-        
 *Create/adapt the Dockerfile to incorporate the missing packages in the image.*
 - We just find the following lines in the dockerfile:
 
