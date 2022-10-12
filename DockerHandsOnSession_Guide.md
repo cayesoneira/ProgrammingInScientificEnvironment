@@ -32,32 +32,32 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 
         docker cp ecstatic_ramanujan:/gate C:\COPIASDECAYE
 - If we check our folder `CopiasDeCaye` we can see it has a copy of the `gate` directory inside.
-
+---
 ## 2. Installing missing packages
-We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will save the dockerfile that was given in the moodle. It has no extension (there is an explicit option to chose no extension when saving the document) and it is called **Dockerfile**, but the name is pointless.
+We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will save the dockerfile that was given in the moodle. It has no extension (there is an explicit option to chose no extension when saving the document) and it is called **Dockerfile**, but the name is pointless. Also we need Xming to be on and not blocked by the Windows firewall.
 
 *Use image: rocker/binder. Install several R packages (Hmisc) in the container.*
-- We pull the new image, run it and use the R syntax to install the package `Hmisc`.
+- We pull the new image, run it prepared to be a jupyter notebook (`-p 8888:8888 -v gate:/gate` is precisely to do that), 
 
         docker pull rocker/binder
         
+        docker run -p 8888:8888 -v gate:/gate rocker/binder     
+- Now open the notebook in the browser with the given url, create a new R notebook and use the R syntax to install the package `Hmisc` writing and running in that notebook:
+
+        install.packages("Hmisc")
+*Use exec to enter to a terminal of the container, usually as `--user root`.*
+- Back in the terminal of the host, in a new window, we write (remember to not stop or kill the container!):
         
-
-*Use exec to enter to a terminal of the container, usually as `--user root`. Not use the `--rm` option to avoid removing the container, and therefore whatever you did in there: remember once the container is closed, whatever you did in there (including the installation of new packages) disappears.*
-
-
-
+        docker exec --user root fervent_mclaren <command to enter>
 *Use image: m1992-python. Install missing packages permanently (astropy, healpy).*
 - We build the image `m1992-python` from the dockerfile. When we know the abolute path we write:
 
-        docker build
-
-
-
-- , run it, and use the terminal to install those packages.
-
+        docker build C:\ARCHIVODOCKERDECAYE
+- We run it and use the terminal to install those packages.
         
-
+        docker run -it 027f9d7572af
+        
+        FALTA EL COMANDO QUE HAY QUE METER EN LA TERMINAL DEL CONTAINER PARA QUE INSTALE ESO. YA INTENTÉ CASI TODAS LAS OPCIONES COMUNES DE PYTHON3 Y DE LINUX, ETC.
 *Create/adapt the Dockerfile to incorporate the missing packages in the image.*
 - We just find the following lines in the dockerfile:
 
@@ -90,17 +90,24 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
                 python3-scipy \
                 python3-pandas \
                 python3-astropy \
-                pyhton3-healpy \
+                python3-healpy \
             && rm -rf /var/lib/apt/list/*
 
         # Avoid the kernel crashing likely due to the PID reaping problem
         ...
-
+---
 ## 3. Detach mode
+*Containers can run interactively (then needs the `-it` options), and in detach mode, using the `-d` option. You can attach to a detached container with `attach` command. You can detach an interactive container using the CRTL^P CTRL^Q sequence.*
+- We enter the interactive mode to use Python3 running the command we used before and it attachs us automaticaly:
 
-Containers can run interactively (then needs the `-it` options), and in detach mode, using the `-d` option. You can attach to a detached container with `attach` command.
-You can detach an interactive container using the CRTL^P CTRL^Q sequence.
+        docker run -it 027f9d7572af
+- But if run it in detach mode we do not get into the terminal of the container:
 
+        docker run -it -d 027f9d7572af
+- But we could attach whenever we want to use Python inside the container again:
+
+        docker attach wonderful_wilbur
+---
 ## 4. Create a  jupyter notebook
 
 Use image: jupyter/base-notebook:2022-08-01
