@@ -28,7 +28,7 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 
         docker attach <name of the container>
 ### Using the `cp` command:
-- Now, using the same container we created, we can copy some files, again, we need two paths:
+- Now, using the same container we created, we can copy some files. Again, we need two paths:
 
         docker cp ecstatic_ramanujan:/gate C:\COPIASDECAYE
 - If we check our folder `CopiasDeCaye` we can see it has a copy of the `gate` directory inside.
