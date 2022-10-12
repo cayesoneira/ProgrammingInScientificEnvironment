@@ -20,7 +20,7 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 - Now we can run the image binding a volume given a path (to know the absolute path of a directory we can use `tree <file>`) and also adding `/bin/bash` to enter the terminal inside the container and create some files we can see copied outside of it.
 
         docker run -v C:\VOLUMENDECAYE:/gate -it --rm duartej/m1992-pyroot:latest /bin/bash
-- Note that the bars are inverted according to the OS: at the host the OS is Windows, but inside the container we are working with Linux distributions.
+**Note that the bars are inverted according to the OS: at the host the OS is Windows, but inside the container we are working with Linux distributions.**
 - We can create now a sample file to check if the volume is correctly created (working in the terminal inside the container):
         
         touch kk.txt
