@@ -119,7 +119,7 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - We pull the image:
 
         docker pull jupyter/base-notebook:2022-08-01
-- We run it with the options we learned before: first, to be a notebook (`-p 8888:8888`) then to be binded to a volume (`-v <some absolute path>:/gate`):
+- We run it with the options we learned before: first, to be a notebook (`-p 8888:8888`) then to be binded to a volume (`-v <some absolute path in the host>:<some absolute path in the container>`):
 
         docker run -p 8888:8888 -v C:\PARALALIBRETA:/home/jovyan --name LibretaDelEj4 jupyter/base-notebook:2022-08-01
 - We open the url in the web browser and we can start using the JupyterLab. **We can enter a terminal in the JupyterLab, use `pwd` and guess that the path this time is `/home/jovyan` and not `/gate` as before.** Also we can do this with the `bash` command.
@@ -127,3 +127,4 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 ## Some extra tips (some of them are repeated).
 - With `CTRL+C` we can stop a process in the terminal.
 - With `CTRL+P, CTRL+Q` we can exit the inside terminal of the container and come back to the host terminal.
+- `pwd` (*print working directory*) is the tool used to know the path in Linux.
