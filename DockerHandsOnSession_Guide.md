@@ -37,10 +37,10 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will save the dockerfile that was given in the moodle. It has no extension (there is an explicit option to chose no extension when saving the document) and it is called **Dockerfile**, but the name is pointless. Also we need Xming to be on and not blocked by the Windows firewall.
 
 *Use image: rocker/binder. Install several R packages (Hmisc) in the container.*
-- We pull the new image, run it prepared to be a jupyter notebook (`-p 8888:8888 -v gate:/gate` is precisely to do that), 
+- We pull the new image:
 
         docker pull rocker/binder
-        
+- We run it prepared to be a jupyter notebook (`-p 8888:8888 -v gate:/gate` is precisely to do that):
         
         docker run -p 8888:8888 -v gate:/gate rocker/binder     
 - Now open the notebook in the browser with the given url, create a new R notebook and use the R syntax to install the package `Hmisc` writing and running in that notebook:
@@ -54,11 +54,13 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - We build the image `m1992-python` from the dockerfile. When we know the abolute path we write:
 
         docker build C:\ARCHIVODOCKERDECAYE
-- We run it and use the terminal to install those packages.
+- We run it:
         
         docker run -it 027f9d7572af
-        
+- We use the terminal inside the container to install those packages:
+
         FALTA EL COMANDO QUE HAY QUE METER EN LA TERMINAL DEL CONTAINER PARA QUE INSTALE ESO. YA INTENTÉ CASI TODAS LAS OPCIONES COMUNES DE PYTHON3 Y DE LINUX, ETC.
+        
 *Create/adapt the Dockerfile to incorporate the missing packages in the image.*
 - We just find the following lines in the dockerfile:
 
@@ -105,16 +107,22 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - But if run it in detach mode we do not get into the terminal of the container:
 
         docker run -it -d 027f9d7572af
-- But we could attach whenever we want to use Python inside the container again:
+- But we could attach whenever we want to use Python inside the container again (and exit the container terminal using `exit()`, which works because it is Python, or maybe the already used `CTRL+P, CTRL+Q`):
 
         docker attach wonderful_wilbur
 ---
 ## 4. Create a  jupyter notebook
 
-Use image: jupyter/base-notebook:2022-08-01
+*Use image: jupyter/base-notebook:2022-08-01 and create a running container binded to a local host folder.*
+- We create a folder in `\C:` which is called **ParaLaLibreta**
+- We pull the image:
 
+        docker pull jupyter/base-notebook:2022-08-01
+- We run it with the options we learned before: first, to be a notebook (`-p 8888:8888`) then to be binded to a volume (`-v <some absolute path>:/gate`):
+
+        docker run -p 8888:8888 -v C:\PARALALIBRETA:/home/jovyan --name LibretaDelEj4 jupyter/base-notebook:2022-08-01
+- We open the url in the web browser and we can start using the JupyterLab. **We can enter a terminal in the JupyterLab, use `pwd` and guess that the path this time is `/home/jovyan` and not `/gate` as before.** Also we can do this with the `bash` command.
+---
 ## Some extra tips (some of them are repeated).
 - With `CTRL+C` we can stop a process in the terminal.
 - With `CTRL+P, CTRL+Q` we can exit the inside terminal of the container and come back to the host terminal.
-
-Create a running container binded to a local host folder
