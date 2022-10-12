@@ -41,6 +41,7 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 
         docker pull rocker/binder
         
+        
         docker run -p 8888:8888 -v gate:/gate rocker/binder     
 - Now open the notebook in the browser with the given url, create a new R notebook and use the R syntax to install the package `Hmisc` writing and running in that notebook:
 
