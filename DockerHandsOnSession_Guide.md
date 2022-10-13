@@ -36,7 +36,7 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 - If we check our folder `CopiasDeCaye` we can see it has a copy of the `gate` directory inside.
 ---
 ## 2. Installing missing packages
-We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will save the dockerfile that was given in the moodle. It has no extension (there is an explicit option to chose no extension when saving the document) and it is called **Dockerfile**, but the name is pointless. Also we need Xming to be on and not blocked by the Windows firewall.
+We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will save the dockerfile that was given in the moodle. It has no extension (there is an explicit option to chose no extension when saving the document) and it is called **Dockerfile**, but the name is pointless. In the case that we are executing Pyhton in interpreter mode we will need Xming to be on and not blocked by the Windows firewall, but to work with Jupyter it is not necessary.
 
 *Use image: rocker/binder. Install several R packages (Hmisc) in the container.*
 - We pull the new image:
