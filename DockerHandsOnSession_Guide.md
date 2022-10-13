@@ -1,6 +1,7 @@
-### Still working in the fact that binding volumes gives priority to the files in the host folder and erases those in the directory linked in the container.
-### Also missing is the CLI command used to install python packages from the terminal of the container.
-
+# Pending troubles:
+- Still working in the fact that binding volumes gives priority to the files in the host folder and erases those in the directory linked in the container.
+- Also missing is the CLI command used to install python packages from the terminal of the container.
+---
 # A guide to the Hands-on session of Docker.
 This session is done in Windows. Soon I will move to Ubuntu. In *italics* are written the questions, afterwards it is my answer.
 
