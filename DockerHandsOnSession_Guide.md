@@ -8,7 +8,7 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 ## 1. Share data between the host and containers
 *Use image: duartej/m1992-pyroot. Create some files inside the container and illustrate the different data sharing: in a running container, using docker cp and when starting the container, binding a volume to the host.*
 
-### Binding volumes:
+### Binding mounts:
 - Before anything else, I create two directories in `\C:`, one is called **VolumenDeCaye** and the other **CopiasDeCaye**. We will use them to not mix the different parts of the exercise.
 - First of all, we open the Powershell as admin using right click.
 - We open Docker Desktop to turn on the Docker Engine.
@@ -18,7 +18,7 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 - We can make sure it is downloaded:
 
         docker images
-- Now we can run the image binding a volume given a path (to know the absolute path of a directory we can use `tree <file>`) and also adding `/bin/bash` to enter the terminal inside the container and create some files we can see copied outside of it.
+- Now we can run the image binding a mount given a path (to know the absolute path of a directory we can use `tree <file>`) and also adding `/bin/bash` to enter the terminal inside the container and create some files we can see copied outside of it.
 
         docker run -v C:\VOLUMENDECAYE:/gate -it --rm duartej/m1992-pyroot:latest /bin/bash
 **Note that the bars are inverted according to the OS: at the host the OS is Windows, but inside the container we are working with Linux distributions.**
@@ -30,6 +30,16 @@ This session is done in Windows. Soon I will move to Ubuntu. In *italics* are wr
 - If we wanted to get inside the container again it is enough to copy the name of the container and write:
 
         docker attach <name of the container>
+### **Binding overwrites the container files**
+In the case we have interest in some files inside the container (for example `duartej/m1992-pyroot` has a `.ipynb` and a `.pdf`) we should know that the binding option obscures the content inside the directory of the container we want to use. To solve this there are two options:
+- 1. First running the container without binding anything, then copying the content of the gate to the folder we want to bind in the host and then running the image binding this folder to the gate:
+                        
+                docker run -it --rm duartej/m1992-pyroot:latest
+                docker cp ecstatic_ramanujan:/gate C:\MONTURADECAYE
+                docker run -v C:\MONTURADECAYE:/gate -it --rm duartej/m1992-pyroot:latest
+- 2. **Danilo's solution!** Also we could just take profit on the fact that any directory in the path on the `-v <path in host>:<path in container>` that does not exist is going to be created, so we could create and overwrite an empty directory in just one step:
+                
+                docker run -v C:\MONTURADECAYE:/gate/CarpetaParaMontar -it --rm duartej/m1992-pyroot:latest
 ### Using the `cp` command:
 - Now, using the same container we created, we can copy some files. Again, we need two paths:
 
@@ -57,12 +67,38 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - We build the image `m1992-python` from the dockerfile. When we know the abolute path we write:
 
         docker build C:\ARCHIVODOCKERDECAYE
-- We run it:
+- We run it with a bash to avoid entering python3.9 automatically (the image is programmed to do so) and as USER root to allow installing packages (if using user root you will see `root@<container name or ID>:/gate#` in the terminal):
         
-        docker run -it 027f9d7572af
-- We use the terminal inside the container to install those packages:
+        docker run --user root -it --name caye-m1992-python 027f9d7572af /bin/bash
+- We use the terminal inside the container to firstly update those packages (be sure that you are not in python, which is indicated by >>>):
 
-        FALTA EL COMANDO QUE HAY QUE METER EN LA TERMINAL DEL CONTAINER PARA QUE INSTALE ESO. YA INTENTÉ CASI TODAS LAS OPCIONES COMUNES DE PYTHON3 Y DE LINUX, ETC.
+        apt-get update
+- And then to install the new ones:
+        
+        apt-get install python3-astropy
+- And also:
+
+        apt-get install python3-healpy
+- Now we need to enter the container:
+
+        docker attach caye-m1992-python
+- Open python3.9:
+
+        python3.9
+
+- And import the desired packages (using python syntax). Note that the package is now called as `astropy` and not `python3-astropy` as the apt-get has it listed:
+
+        >>> import astropy
+- The same can be done with `healpy`:
+
+        >>> import healpy
+- We can check that they are installed with this code:
+
+        >>> import pkg_resources
+        installed_packages = pkg_resources.working_set
+        installed_packages_list = sorted(["%s==%s" % (i.key, i.version)
+                for i in installed_packages])
+        print(installed_packages_list)
 *Create/adapt the Dockerfile to incorporate the missing packages in the image.*
 - We just find the following lines in the dockerfile:
 
