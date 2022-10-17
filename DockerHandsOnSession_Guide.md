@@ -167,6 +167,9 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - And to remove all the containers:
 
         docker rm $ (docker ps -a -q)
-- In Linux the best way to start working with Notebooks with a mounted directory is using this already elaborated command:
+- In Linux the best way to start working with JupyterLab with a mounted directory is using this already elaborated command:
 
         sudo  docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/home/jovyan/Mounted --name Libretas jupyter/base-notebook:2022-08-01
+- And with a JupyterLab with Python and also R installed (we remove the name so we do not have to be erasing containers each time we want to run a JuoyterLab):
+
+        sudo  docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/home/jovyan/Mounted jupyter/datascience-notebook:latest
