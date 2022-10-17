@@ -163,10 +163,10 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - `pwd` (*print working directory*) is the tool used to know the path in Linux.
 - To kill all the containers we can just use:
 
-        docker stop $ (docker ps -a -q)
+        sudo docker stop $(sudo docker ps -a -q)
 - And to remove all the containers:
 
-        docker rm $ (docker ps -a -q)
+        sudo docker rm $(sudo docker ps -a -q)
 - In Linux the best way to start working with JupyterLab with a mounted directory is using this already elaborated command:
 
         sudo  docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/home/jovyan/Mounted --name Libretas jupyter/base-notebook:2022-08-01
