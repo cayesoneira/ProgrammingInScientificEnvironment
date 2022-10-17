@@ -1,28 +1,33 @@
 # Discussion on the Shell Assignment
 Now we are going to explain the solution to the assignment on shell so every part is well understood.
-## Header: shebang and functions
-    #!/bin/bash
 
-    function get_number(){
-      grep number $1 | cut -d '>' -f 2 | cut -d '<' -f 1
-    }
+## Understanding the script:
 
-    function get_name(){
-      grep name $1 | cut -d '"' -f 2
-    }
+### Header: shebang and functions
+- Shebang:
+
+        #!/bin/bash
+
+        function get_number(){
+          grep number $1 | cut -d '>' -f 2 | cut -d '<' -f 1
+        }
+
+        function get_name(){
+          grep name $1 | cut -d '"' -f 2
+        }
 
 - This part is only to clean the folders before downloading them again.
 
       rm -r shell-lesson-data
       rm shell-lesson-data.zip
 
-## 1. Download the file https://raw.githubusercontent.com/swcarpentry/shell-novice/f32646f/data/shell-lesson-data.zip
+### 1. Download the file https://raw.githubusercontent.com/swcarpentry/shell-novice/f32646f/data/shell-lesson-data.zip
     wget https://raw.githubusercontent.com/swcarpentry/shell-novice/f32646f/data/shell-lesson-data.zip
 
-## 2. Unzip it
+### 2. Unzip it
     unzip shell-lesson-data.zip
 
-## 3. Read the .xml files in folder data/elements and copy them in another (new) folder named elements_by_atomic_number & 4. The file names in this folder should follow the pattern e.g. 008_Oxigen.xml.
+### 3. Read the .xml files in folder data/elements and copy them in another (new) folder named elements_by_atomic_number & 4. The file names in this folder should follow the pattern e.g. 008_Oxigen.xml.
 
     mkdir -p shell-lesson-data/data/elements_by_atomic_number
 
@@ -46,10 +51,10 @@ Now we are going to explain the solution to the assignment on shell so every par
       fi
     done
 
-## 5. Change file permissions to be writable by the group and have no read/write permissions for other users.
+### 5. Change file permissions to be writable by the group and have no read/write permissions for other users.
 sudo chmod -R 751 elements
 
-## 6. Create a tar.gz file with these new files, removing all intermediate files and folders created.
+### 6. Create a tar.gz file with these new files, removing all intermediate files and folders created.
     tar -czvf elements.tar.gz elements
     cp elements.tar.gz /home/cayesoneira/Notebooks/shell
 
@@ -57,4 +62,11 @@ sudo chmod -R 751 elements
     rm -r shell-lesson-data
     rm shell-lesson-data.zip
 
-## To extract files: `tar -x -f elements.tar.gz
+## Using these features:
+### To extract the files:
+
+    `tar -x -f elements.tar.gz`
+
+## Executing:
+    chmod +x file.sh
+    bash file.sh
