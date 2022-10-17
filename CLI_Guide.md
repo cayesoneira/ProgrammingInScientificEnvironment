@@ -22,10 +22,10 @@
 - `unzip`
 - `sed`: editor de flujo de texto, se utiliza con opciones que permiten reemplazar palabras, etc.
 - `awk`: permite filtrar de un texto palabras, pero también números, etc.
-- `cut`: 
+- `cut`:
+- `$()`: 
 # CLI solved examples:
 - Find all text files (.txt extension) smaller than 10 KB and that start with letter "a" inside a directory (included subdirectories):
 
       find . -type f -name '*.txt' -name 'a*' -size -10k
 - 
-      
