@@ -161,3 +161,6 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - With `CTRL+C` we can stop a process in the terminal.
 - With `CTRL+P, CTRL+Q` we can exit the inside terminal of the container and come back to the host terminal.
 - `pwd` (*print working directory*) is the tool used to know the path in Linux.
+- In Linux the best way to start working with Notebooks with a mounted directory is using this already elaboarted command:
+
+        sudo  docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/home/jovyan/Mounted --name Libretas jupyter/base-notebook:2022-08-01
