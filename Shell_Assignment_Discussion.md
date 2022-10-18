@@ -7,6 +7,7 @@ Now we are going to explain the solution to the assignment on shell so every par
 - Shebang:
 
         #!/bin/bash
+- Functions:
 
         function get_number(){
           grep number $1 | cut -d '>' -f 2 | cut -d '<' -f 1
