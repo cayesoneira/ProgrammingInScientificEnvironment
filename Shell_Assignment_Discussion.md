@@ -56,6 +56,7 @@ And we execute the loop, combined with the *if*, that allows changing the names 
 - Also, we had to use the `$(())` to get the machine consider the variable *number* an integer; in other case the logic condition will not be well understood.
 - The conditions are used to get the *00x*, *0xy* and *xyz* numeration: it read the number of digits and writes the necessary zeroes.
 - Last, it is remarkable that the `mv` function needs in the destiny file the path indicator: since we are entering the directory in the head of the loop to search for the files, we need to move them also to that place.
+
 Everything together would look like:
 
     for file in elements/*.xml
