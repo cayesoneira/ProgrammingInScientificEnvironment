@@ -177,4 +177,3 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 
         pip install bash_kernel
         python -m bash_kernel.install
-        bash
