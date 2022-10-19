@@ -173,3 +173,8 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 - And with a JupyterLab with Python and also R installed (we remove the name so we do not have to be erasing containers each time we want to run a JupyterLab):
 
         sudo  docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/home/jovyan/Mounted jupyter/datascience-notebook:latest
+- To add a kernel we can write **in the terminal of the container** (we can access it through JupyterLab) the following:
+
+        pip install bash_kernel
+        python -m bash_kernel.install
+        bash
