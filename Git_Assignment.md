@@ -16,10 +16,8 @@
 16. Push the changes made locally back to the remote repository forked to your account.
 17. Check if the new file is created online and provide the link to your forked repository. Use the text field in the Moodle Assignment.
 18. Create a pull request in your forked repository in order to merge https://github.com/[your_user]/lyrics to https://github.com/yoselita/lyrics.
-19. Report in the corresponding topic at Moodle Forum, if conflicts pop up. Don't send e-mails!!!!
 
-**Important**: be consistent with the working directory. In case there are files already, clean them:
-
+---
 
 ```bash
 cd /home/jovyan/Mounted/Programming/Git/introduction-to-git-main
