@@ -177,3 +177,9 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
 
         pip install bash_kernel
         python -m bash_kernel.install
+- Launch the pyROOT in interpreter mode:
+
+        docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v gate:/gate -it --rm duartej/m1992-pyroot python
+- Launch pyROOT in notebook mode:
+
+        docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/home/jovyan/Mounted --name notebook --rm duartej/m1992-pyroot
