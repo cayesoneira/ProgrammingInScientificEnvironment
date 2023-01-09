@@ -183,4 +183,4 @@ We create a new folder called **ArchivoDockerDeCaye** in `\C:` where we will sav
         docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v gate:/gate -it --rm duartej/m1992-pyroot python
 - Launch pyROOT in notebook mode:
 
-        docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/home/jovyan/Mounted --rm duartej/m1992-pyroot
+        docker run -p 8888:8888 -v /home/cayesoneira/Notebooks:/gate/Mounted --rm duartej/m1992-pyroot
